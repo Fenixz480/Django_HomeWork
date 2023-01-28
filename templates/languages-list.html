@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+b {letter-spacing: 10px;}
+a {text-decoration: none;}
+ul.hr {
+    margin: 0; /* Обнуляем значение отступов */
+    padding: 4px; /* Значение полей */
+   }
+   ul.hr li {
+    display: inline; /* Отображать как строчный элемент */
+    margin-right: 5px; /* Отступ слева */
+    padding: 3px; /* Поля вокруг текста */
+</style>
+<head>
+    <meta charset="UTF-8">
+    <title>Список всех языков</title>
+</head>
+<a href="?page=1">&laquo; На первую страницу</a><br>
+<a href="?page={{ page_obj.paginator.num_pages }}"> На последнюю страницу &raquo;</a><br>
+<body>
+<h1>Список всех языков</h1>
+<a href = '/ '>Назад на главную страницу</a>
+<ol>
+    {% for select_language in page_obj%}
+       <a href = '/language/{{select_language}}'><li>{{ select_language }}</li></a>
+    {% endfor %}
+</ol>
+<h1>Первая пагинация</h1>
+<div>
+        {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}"> Предыдущая страница</a>
+        {% endif %}
+
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}"> Следующая страница </a><br><br>
+        {% endif %}
+
+
+
+        <br>
+    страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }} страниц
+</div>
+<ol>
+    <li>{{ page_obj.number }} из {{ page_obj.paginator.num_pages }}</li>
+</ol>
+Вторая пагинация:
+<nav>
+    <ul class="hr">
+        {% for p in page_obj.paginator.page_range %}
+        <li>
+            <a href ="?page={{ p }}">{{ p }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+</nav>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+b {
+    letter-spacing: 10px;
+   }
+a {text-decoration: none;}
+</style>
+<head>
+    <meta charset="UTF-8">
+    <title>Список стран</title>
+</head>
+<body>
+<h2 >Алфавитный указатель</h2>
+<b>
+    {% for letter in alphabet %}
+        <a href = '/letter/{{ letter }}'> {{ letter }} </a>
+    {% endfor %}
+</b><br><br>
+<a href = '/ '>Назад на главную страницу</a>
+<h3>Весь список стран</h3>
+<ol>
+    {% for qwerty in all_world %}
+       <a href = '/country/{{ qwerty.country }}'><li>  {{ qwerty.country }} </li></a>
+    {% endfor %}
+</ol>
+
+</body>
+</html>
